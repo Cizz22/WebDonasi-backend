@@ -52,7 +52,7 @@
                                 </td>
                                 <td class="px-10 py-2 text-center">
                                     <a href="{{ route('admin.category.edit', $category->id) }}" class="bg-indigo-600 px-4 py-2 rounded shadow-sm text-xs text-white focus:outline-none">EDIT</a>
-                                    <button id="delete" value="{{$category->id}}" class="bg-red-600 px-4 py-2 rounded shadow-sm text-xs text-white focus:outline-none">HAPUS</button>
+                                    <button id="{{$category->id}}" onclick="destroy(this.id)" class="bg-red-600 px-4 py-2 rounded shadow-sm text-xs text-white focus:outline-none">HAPUS</button>
                                 </td>
                             </tr>
                         @empty
@@ -72,13 +72,9 @@
     </div>
 </main>
 <script>
-    //ajax delete
-const id = document.getElementById('delete').getAttribute('value')
-document.getElementById("delete").addEventListener("click", function() {
-  destroy(id)
-});
+//ajax delete
 
-async function destroy(id) {
+function destroy(id) {
         const token = $("meta[name='csrf-token']").attr("content");
 
         Swal.fire({

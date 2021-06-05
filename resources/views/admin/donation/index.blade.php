@@ -35,7 +35,7 @@
                 @enderror
             </div>
 
-            <div class="flex-1">
+            <div class="flex-1 sm:flex-auto">
                 <button type="submit"
                     class="mt-8 w-full p-3 bg-gray-600 text-gray-200 rounded-md shadow-md hover:bg-gray-700 focus:outline-none focus:bg-gray-700">FILTER</button>
             </div>

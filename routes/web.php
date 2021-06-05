@@ -6,6 +6,7 @@ use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\DonationController;
 use App\Http\Controllers\admin\DonaturController;
 use App\Http\Controllers\admin\ProfileController;
+use App\Http\Controllers\admin\SliderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,5 +37,6 @@ Route::prefix('admin')->group(function () {
         Route::get('/donation', [DonationController::class, 'index'])->name('admin.donation.index');
         Route::get('/donation/filter', [DonationController::class, 'filter'])->name('admin.donation.filter');
         Route::get('/profile', [ProfileController::class, 'index'])->name('admin.profile.index');
+        Route::resource('slider', SliderController::class, ['as' => 'admin']);
     });
 });

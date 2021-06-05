@@ -35,7 +35,7 @@
 
                     <div class="mt-4">
                         @if(!Auth()->user()->two_factor_secret)
-                            <form action="{{url('user/two-factor-authentication')}}">
+                            <form action="{{url('user/two-factor-authentication')}}" method="POST">
                             @csrf
 
                             <button type="submit" class="py-2 px-4 bg-gray-600 rounded-md hover:bg-gray-700 text-white focus:outline-none focus:bg-gray-700">
@@ -43,10 +43,10 @@
                             </button>
                         </form>
                         @else
-                        <form action="{{url('user/two-factor-authentication')}}">
+                        <form action="{{url('user/two-factor-authentication')}}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="py-2 px-4 bg-gray-600 rounded-md hover:bg-gray-700 text-white focus:outline-none focus:bg-gray-700">
+                            <button type="submit" class="py-2 px-4 bg-red-600 rounded-md hover:bg-gray-700 text-white focus:outline-none focus:bg-gray-700">
                                 Disable Two-Factor
                             </button>
                         </form>
@@ -85,6 +85,98 @@
                 </div>
                 @endif
             </div>
+            <div>
+                <div class="bg-white p-6 rounded-md shadow-md">
+                    <h2 class="text-gray-600 font-bold text-lg capitalize">EDIT PROFILE</h2>
+                    <hr class="mt-4">
+
+                    <div class="mt-4">
+                        <form action="{{route('user-profile-information.update') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            @method('PUT')
+                            <label class="block" for="">
+                                <span class="text-gray-700 font-semibold">Name</span>
+                                <input type="text" name="name" class="bg-gray-100 outline-none form-input mt-1 block w-full rounded-md focus:bg-white" id="" value="{{old('name', Auth()->user()->name)}}">
+                                @error('name')
+                                    <div class="w-full bg-red-300 shadow-md rounded-md overflow-hidden mt-2">
+                                        <div class="px-4 py-2">
+                                            <p class="text-gray-600 text-sm">{{$message}}</p>
+                                        </div>
+                                    </div>
+                                @enderror
+                            </label>
+                            <label class="block mt-3" for="">
+                                <span class="text-gray-700 font-semibold">Email</span>
+                                <input type="text" name="email" class="bg-gray-100 outline-none form-input mt-1 block w-full rounded-md focus:bg-white" id="" value="{{old('email', Auth()->user()->email)}}">
+                                @error('email')
+                                    <div class="w-full bg-red-300 shadow-md rounded-md overflow-hidden mt-2">
+                                        <div class="px-4 py-2">
+                                            <p class="text-gray-600 text-sm">{{$message}}</p>
+                                        </div>
+                                    </div>
+                                @enderror
+                            </label>
+
+                            <div class="mt-3">
+                                <button class="bg-indigo-500 rounded-md px-4 py-2 hover:outline-none text-white">Update</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+                <div class="mt-6 bg-white rounded-md shadow-md p-6">
+                    <h2 class="text-lg capitalize text-gray-600 font-bold">EDIT PASSWORD</h2>
+                    <hr class="mt-4">
+
+                    <div class="mt-4">
+                        <form action="{{route('user-password.update')}} " method="POST" enctype="multipart/form-data">
+                            @csrf
+                            @method('PUT')
+                            <label class="block" for="">
+                                <span class="text-gray-700 font-semibold">Old Password</span>
+                                <input type="password" name="current_password" class="bg-gray-100 outline-none form-input mt-1 block w-full rounded-md focus:bg-white" id="">
+                                @error('current_password')
+                                    <div class="w-full bg-red-300 shadow-md rounded-md overflow-hidden mt-2">
+                                        <div class="px-4 py-2">
+                                            <p class="text-gray-600 text-sm">{{$message}}</p>
+                                        </div>
+                                    </div>
+                                @enderror
+                            </label>
+                            <label class="block mt-3" for="">
+                                <span class="text-gray-700 font-semibold">New Password</span>
+                                <input type="password" name="password" class="bg-gray-100 outline-none form-input mt-1 block w-full rounded-md focus:bg-white" id="">
+                                @error('password')
+                                    <div class="w-full bg-red-300 shadow-md rounded-md overflow-hidden mt-2">
+                                        <div class="px-4 py-2">
+                                            <p class="text-gray-600 text-sm">{{$message}}</p>
+                                        </div>
+                                    </div>
+                                @enderror
+                            </label>
+
+                            <label class="block mt-3" for="">
+                                <span class="text-gray-700 font-semibold">New Password Confirmation</span>
+                                <input type="password" name="password_confirmation" class="bg-gray-100 outline-none form-input mt-1 block w-full rounded-md focus:bg-white" id="">
+                                @error('password')
+                                    <div class="w-full bg-red-300 shadow-md rounded-md overflow-hidden mt-2">
+                                        <div class="px-4 py-2">
+                                            <p class="text-gray-600 text-sm">{{$message}}</p>
+                                        </div>
+                                    </div>
+                                @enderror
+                            </label>
+
+                            <div class="mt-3">
+                                <button class="bg-indigo-500 rounded-md px-4 py-2 hover:outline-none text-white">Update</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
 
 
         </div>

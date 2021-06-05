@@ -172,7 +172,7 @@ class CampaignController extends Controller
     public function destroy($id)
     {
         $campaign = Campaign::findOrFail($id);
-        Storage::disk('local')->delete('public/categories/'.basename($campaign->image));
+        Storage::disk('local')->delete('public/campaigns/'.basename($campaign->image));
 
 
         try {

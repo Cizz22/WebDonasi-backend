@@ -88,9 +88,9 @@ class ProfileController extends Controller
 
         $donatur = Donatur::find(auth()->guard('api')->user()->id);
 
-        if($request->file('image')){
+        if($request->file('avatar')){
             //hapus image lama
-            Storage::disk('local')->delete('public/donaturs/'.basename($donatur->image));
+            Storage::disk('local')->delete('public/donaturs/'.basename($donatur->avatar));
 
             //upload image baru
             $image = $request->file('avatar');

@@ -40,7 +40,7 @@ class RegisterController extends Controller
         $response = [
             'success' => true,
             'message' => 'Register Successfully',
-            'data' => $donatur,
+            'user' => $donatur,
             'token'   => $donatur->createToken('authToken')->accessToken
         ];
         return response()->json($response, Response::HTTP_CREATED);

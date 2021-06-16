@@ -6,6 +6,7 @@ use App\Http\Controllers\api\DonationController;
 use App\Http\Controllers\api\LoginController;
 use App\Http\Controllers\api\ProfileController;
 use App\Http\Controllers\api\RegisterController;
+use App\Http\Controllers\api\SliderController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -46,3 +47,5 @@ Route::get('/campaign/{slug}', [CampaignController::class, 'show']);
 
 Route::post('/register', [RegisterController::class, 'register']);
 Route::post('/login', [LoginController::class, 'login']);
+
+Route::get('/slider', [SliderController::class, 'index']);

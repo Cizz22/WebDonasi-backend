@@ -19,7 +19,7 @@ class CampaignController extends Controller
     {
         $campaigns = Campaign::with(['user', 'sumDonation'])->when(request()->q, function($campaigns){
             $campaigns = $campaigns->where('title','like','%'.request()->q.'%');
-        })->paginate(5);
+        })->paginate(2);
 
         $response = [
             'success' => true,
